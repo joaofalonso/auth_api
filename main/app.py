@@ -1,6 +1,7 @@
 from api import api, app
 from db import init_db
 from namespaces.user import ns as ns_user
+from namespaces.token import ns as ns_token
 import logging
 
 logging.basicConfig(filename='log.log')
