@@ -15,7 +15,7 @@ def create_token(payload):
     if(authenticate_user(payload)):
         return token_encode(payload)
     else:
-        raise Exception('Invalid user and\or password')
+        raise ResourceException('Invalid user and\or password')
 
 def validate_token(token):
     return authenticate_user(token_decode(token))

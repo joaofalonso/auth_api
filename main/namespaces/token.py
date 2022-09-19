@@ -14,7 +14,7 @@ class Token(Resource):
     @ns.doc('Validate user data and returns a JWT token when it\'s valid')
     def get(self):
         try:
-            return create_token(api.payload), 200
+            return json.dumps({'token' : create_token(api.payload)}), 200
         except ResourceException as err:
             logging.error(err)
             return json.dumps({'error': str(err)}), 202

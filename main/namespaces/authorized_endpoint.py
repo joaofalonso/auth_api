@@ -14,10 +14,11 @@ class Auth(Resource):
     def get(self):
         try:
             auth_request()
-            return 'Worked', 201
+            return 'Worked', 200
         except ResourceException as err:
             logging.error(err)
             return json.dumps({'error': str(err)}), 202
         except BaseException as err:
+
             logging.error(err)
             return json.dumps({'error': str(err)}), 500

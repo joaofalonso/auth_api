@@ -1,10 +1,12 @@
 import logging
 from flask import request
+from resources.exception.resource_exception import ResourceException
 from resources.token import validate_token
 
 def auth_request():
-    try:
-        token = request.headers.get('token')
+    token = request.headers.get('token')
+    if(token):
         validate_token(token)
-    except Exception as err:
-        raise err
+    else:
+        raise ResourceException('No token found')
+

@@ -1,14 +1,13 @@
 from db import db
 from model.user import User
 from repository.user import save, find_user
-import logging
-
+from resources.exception.resource_exception import ResourceException
 def create_user(data):
     user = User(**data)
     if(find_user(user.name, user.email) is None):
         save(user)
     else:
-        raise Exception('A user with the same name or email already exists')       
+        raise ResourceException('A user with the same name or email already exists')       
     
 def authenticate_user(data):
     login = data['login']
