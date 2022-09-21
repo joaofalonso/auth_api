@@ -2,14 +2,16 @@ import requests
 import pytest
 import json
 
-url = ''
+class TestUser:
 
-def test_insert_success():
-    r = requests.post(f'{url}/user', json= {'name':'', 'email' : '', 'pswd':''})
+    url = ''
 
-    assert r.status_code == 201
+    def test_insert_success(self):
+        r = requests.post(f'{self.url}/user', json= {'name':'', 'email' : '', 'pswd':''})
 
-def test_insert_already_exists():
-    r = requests.post(f'{url}/user', json= {'name':'', 'email' : '', 'pswd':''})
-    r_json = json.loads(r.json())
-    assert r_json['error'] == 'A user with the same name or email already exists'
+        assert r.status_code == 201
+
+    def test_insert_already_exists(self):
+        r = requests.post(f'{self.url}/user', json= {'name':'', 'email' : '', 'pswd':''})
+        r_json = json.loads(r.json())
+        assert r_json['error'] == 'A user with the same name or email already exists'
