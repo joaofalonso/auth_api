@@ -6,7 +6,9 @@ from resources.token import validate_token
 def auth_request():
     token = request.headers.get('token')
     if(token):
-        validate_token(token)
+        is_valid = validate_token(token)
+        if not is_valid:
+            raise ResourceException('Invalid token')
     else:
         raise ResourceException('No token found')
 
