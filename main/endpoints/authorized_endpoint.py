@@ -18,7 +18,7 @@ class Auth(Resource):
         except ResourceException as err:
             logging.error(err)
             return json.dumps({'error': str(err)}), 202
-        except BaseException as err:
+        except Exception as err:
 
             logging.error(err)
             return json.dumps({'error': str(err)}), 500

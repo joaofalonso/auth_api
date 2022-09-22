@@ -6,12 +6,7 @@ secret_key = ""
 algorithm = ""
 
 dt_format = '%Y%m%d%H%M%S'
-def token_encode(payload):
-    return jwt.encode(payload, secret_key, algorithm=algorithm)
-
-def token_decode(token):
-    return jwt.decode(token, secret_key, algorithms=[algorithm])
-
+    
 def create_token(payload):
     user = user_rsc.authenticate(payload)
     exp_limit = timedelta(hours=2)
@@ -33,4 +28,10 @@ def validate_token(token):
     token_exp= dt.strptime(str(jwt_payload['exp']), dt_format)
 
     return user and user.name == jwt_payload['iss'] and  token_exp >= dt.now()
+
+def token_encode(payload):
+    return jwt.encode(payload, secret_key, algorithm=algorithm)
+
+def token_decode(token):
+    return jwt.decode(token, secret_key, algorithms=[algorithm])
     

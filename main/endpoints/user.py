@@ -1,24 +1,26 @@
-from api import api
+from api import api 
 from flask_restx import Resource
-from resources.token import create_token
-import json
+from resources.user import create
 import logging
+import json
 from resources.exception.resource_exception import ResourceException
 
-ns = api.namespace('token', 'Manage JWT token')
+ns = api.namespace('user', 'User services')
 
 @ns.route('')
+class User(Resource):
 
-class Token(Resource):
-
-    @ns.doc('Validate user data and returns a JWT token when it\'s valid')
-    def get(self):
+    @ns.doc('Create a user')
+    def post(self):
         try:
-            return json.dumps({'token' : create_token(api.payload)}), 200
+            return create(api.payload), 200
         except ResourceException as err:
             logging.error(err)
             return json.dumps({'error': str(err)}), 202
-        except BaseException as err:
+        except Exception as err:
             logging.error(err)
             return json.dumps({'error': str(err)}), 500
 
+
+
+        
