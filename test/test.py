@@ -9,4 +9,4 @@ class TestApp(unittest.TestCase):
         self.assertTrue(False)
 
     def test_assert_equals(self):
-        self.assertEqual("","")
+        self.assertEqual("", "")
