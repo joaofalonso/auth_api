@@ -14,4 +14,3 @@ if __name__ == '__main__':
     api.add_namespace(ns_token)
 
     app.run()
-    

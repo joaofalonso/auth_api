@@ -10,7 +10,7 @@ ns = api.namespace('auth', 'Token validation test endpoint')
 @ns.route('')
 class Auth(Resource):
 
-    
+
     def get(self):
         try:
             auth_request()

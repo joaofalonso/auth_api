@@ -8,8 +8,8 @@ from resources.exception.resource_exception import ResourceException
 ns = api.namespace('token', 'Manage JWT token')
 
 @ns.route('')
-
 class Token(Resource):
+
 
     @ns.doc('Validate user data and returns a JWT token when it\'s valid')
     def get(self):
@@ -17,8 +17,7 @@ class Token(Resource):
             return json.dumps({'token' : create_token(api.payload)}), 200
         except ResourceException as err:
             logging.error(err)
-            return json.dumps({'error': str(err)}), 202
+            return json.dumps({'error':str(err)}), 202
         except Exception as err:
             logging.error(err)
-            return json.dumps({'error': str(err)}), 500
-
+            return json.dumps({'error':str(err)}), 500
