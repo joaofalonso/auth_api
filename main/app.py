@@ -6,7 +6,7 @@ from endpoints.authorized_endpoint import ns as ns_auth
 import logging
 
 if __name__ == '__main__':
-    logging.basicConfig(filename='api.log', level = logging.INFO)
+    logging.basicConfig(filename='api.log', level=logging.INFO)
     init_db(app)
 
     api.add_namespace(ns_user)
@@ -14,3 +14,4 @@ if __name__ == '__main__':
     api.add_namespace(ns_token)
 
     app.run()
+    
